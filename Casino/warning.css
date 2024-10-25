@@ -1,0 +1,20 @@
+.container{width: 100%; height: 100%; display: flex; justify-content: center; align-items: center;}
+
+.warning{width: 50%; height: 50%; background-color: #fff; border-radius: 10px; padding: 20px;}
+
+.warning h1{text-align: center; font-size: 24px; color: #1c1c1c;}
+
+.warning p{text-align: center; font-size: 16px; color: #1c1c1c;}
+
+.warning .btn-play{display: block; margin: 0 auto; background-color: #1c1c1c; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none;}
+
+.warning .btn-play:hover{background-color: #333; color: #fff;}
+
+.warning a{display: block; margin: 0 auto; background-color: #1c1c1c; color: #fff; padding: 10px 20px; border-radius: 5px; text-decoration: none;}
+
+.warning a:hover{background-color: #333; color: #fff;}
+
+body{background-color: #1c1c1c;}
+
+
+
