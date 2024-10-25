@@ -1,0 +1,44 @@
+ .badan {
+  background: rgb(0, 0, 0);
+  background-color: black;
+ 
+}
+
+.pilihan {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+ .judul {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  color: rgb(41, 41, 41);
+ }
+
+ .member {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  color: rgb(0, 0, 0);
+ }
+
+ .memek {
+  color: blanchedalmond;
+  background-color: blanchedalmond;
+ }
+
+ 
+
+
+ btn-group {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+ }
+
