@@ -37,7 +37,7 @@ document.getElementById('taruhBtn').addEventListener('click', function() {
         hasilText.textContent = "Anda kalah! Saldo baru: " + saldo;
     }
 
-    document.getElementById('saldo').textContent = "Saldo: " + saldo;
+    document.getElementById('saldo').textContent = saldo;
     taruhanInput.value = ''; // Reset input
 });
 
@@ -47,11 +47,10 @@ document.getElementById('shortcutBtn').addEventListener('click', function() {
 });
 
 // Tambahkan button pinjam uang
-const pinjamBtn = document.createElement('button');
-pinjamBtn.textContent = 'Pinjam Uang';
-pinjamBtn.addEventListener('click', function() {
+document.getElementById('pinjamBtn').addEventListener('click', function() {
     const pinjamInput = document.getElementById('pinjam');
     const pinjam = parseInt(pinjamInput.value);
+    const pinjamSound = document.getElementById('pinjamSound');
 
     if (isNaN(pinjam) || pinjam <= 0) {
         alert("Masukkan jumlah pinjaman yang valid.");
@@ -65,39 +64,47 @@ pinjamBtn.addEventListener('click', function() {
 
     utang += pinjam;
     saldo += pinjam;
-    document.getElementById('saldo').textContent = "Saldo: " + saldo + ", Utang: " + utang;
+    document.getElementById('saldo').textContent = saldo;
+    document.getElementById('utang').textContent = utang;
+
+    // Putar suara pinjam
+    pinjamSound.play();
+
     pinjamInput.value = ''; // Reset input
 });
 
-// Tambahkan input pinjam uang
-const pinjamInput = document.createElement('input');
-pinjamInput.type = 'number';
-pinjamInput.id = 'pinjam';
-pinjamInput.placeholder = 'Jumlah pinjaman';
-
-// Tambahkan elemen-elemen baru ke halaman
-document.body.appendChild(pinjamBtn);
-document.body.appendChild(pinjamInput);
-
 // Tambahkan button bayar utang
-const bayarHutangBtn = document.createElement('button');
-bayarHutangBtn.textContent = 'Bayar Hutang';
-bayarHutangBtn.addEventListener('click', function() {
+document.getElementById('bayarHutangBtn').addEventListener('click', function() {
     if (utang <= 0) {
         alert("Anda tidak memiliki hutang.");
         return;
     }
 
-    if (saldo < utang) {
-        alert("Saldo tidak cukup untuk membayar hutang.");
+    const bayar = prompt("Masukkan jumlah yang ingin dibayar:");
+
+    if (bayar === null) return; // Jika pengguna membatalkan
+
+    const bayarAmount = parseInt(bayar);
+
+    if (isNaN(bayarAmount) || bayarAmount <= 0) {
+        alert("Masukkan jumlah yang valid untuk dibayar.");
         return;
     }
 
-    const bayar = Math.min(saldo, utang);
-    saldo -= bayar;
-    utang -= bayar;
-    document.getElementById('saldo').textContent = "Saldo: " + saldo + ", Utang: " + utang;
-});
+    if (bayarAmount > saldo) {
+        alert("Saldo tidak cukup untuk membayar utang.");
+        return;
+    }
 
-// Tambahkan button bayar hutang ke halaman
-document.body.appendChild(bayarHutangBtn);
+    if (bayarAmount > utang) {
+        alert("Jumlah yang dibayar melebihi total utang.");
+        return;
+    }
+
+    saldo -= bayarAmount;
+    utang -= bayarAmount;
+    document.getElementById('saldo').textContent = saldo;
+    document.getElementById('utang').textContent = utang;
+
+    alert("Anda telah membayar: " + bayarAmount);
+});
